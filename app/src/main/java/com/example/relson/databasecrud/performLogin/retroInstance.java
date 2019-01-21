@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class retroInstance {
 
-    private static String url = "http:// 192.168.0.104/";
+    private static String url = "http://192.168.0.104/";
 
     public static Retrofit retrofit = null;
 

@@ -6,17 +6,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.relson.databasecrud.performLogin.ApiInterface;
+import com.example.relson.databasecrud.performLogin.modeling;
+import com.example.relson.databasecrud.performLogin.retroInstance;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class newUser extends AppCompatActivity {
 
-    TextView txtUsername, txtPassword, txtConfirmPassword;
+    TextView txtName, txtUsername, txtPassword, txtConfirmPassword;
     Button signUp;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_account);
 
+        txtName = findViewById(R.id.txtName);
         txtUsername = findViewById(R.id.txtUsername);
         txtPassword = findViewById(R.id.txtPassword);
         txtConfirmPassword = findViewById(R.id.txtConfirmPassword);
@@ -41,6 +51,7 @@ public class newUser extends AppCompatActivity {
          {
              return;
          }
+         login();
     }
 
     private boolean checkUsername() {
@@ -73,7 +84,35 @@ public class newUser extends AppCompatActivity {
         return true;
     }
 
-}
+    private void login() {
+
+        String username = txtUsername.getText().toString();
+        String password = txtPassword.getText().toString();
+        String name = txtName.getText().toString();
+
+        ApiInterface apiInterface = retroInstance.setRetrofit().create(ApiInterface.class);
+        Call<modeling> call = apiInterface.setInfo(name, username, password);
+        call.enqueue(new Callback<modeling>() {
+            @Override
+            public void onResponse(Call<modeling> call, Response<modeling> response) {
+                if (response.body().getResponse().equals("Registered Successfully")) {
+                    Toast.makeText(newUser.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                } else if (response.body().getResponse().equals("Already exist")) {
+                    Toast.makeText(newUser.this, "Already exist", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(newUser.this, "Error occured", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<modeling> call, Throwable t) {
+
+            }
+        });
+        }
+    }
+
+
 
 
 

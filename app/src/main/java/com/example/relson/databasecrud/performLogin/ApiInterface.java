@@ -14,5 +14,6 @@ public interface ApiInterface {
     @GET("/Projects/menu/getItemList.php")
     Call<List<menu>> getItem();
 
-
+    @GET("/Projects/login_app/register.php")
+    Call<modeling> setInfo(@Query("name") String name,@Query("username") String username, @Query("password") String password);
 }
