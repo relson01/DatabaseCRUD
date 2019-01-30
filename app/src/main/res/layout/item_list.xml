@@ -1,36 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="15dp">
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/img"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:src="@drawable/ic_launcher_background" />
-
-    <TextView
-        android:id="@+id/txtItem"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@id/img"
-        android:paddingLeft="15dp"
-        android:text="TextView"
-        android:textSize="20sp" />
+        android:layout_centerVertical="true">
 
-    <TextView
-        android:id="@+id/txtPrice"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/img"
-        android:layout_toRightOf="@id/img"
-        android:paddingLeft="15dp"
-        android:text="TextView2"
-        android:textSize="20sp" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/txtItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="TextView"
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/img"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:text="TextView"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img" />
+
+            <Button
+                android:id="@+id/addToCart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/button_border"
+                android:text="ADD"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="87dp"
+                android:layout_height="47dp"
+                app:layout_constraintBottom_toBottomOf="@+id/addToCart"
+                app:layout_constraintEnd_toEndOf="@+id/addToCart"
+                app:layout_constraintStart_toStartOf="@+id/addToCart"
+                app:layout_constraintTop_toTopOf="@+id/addToCart"
+                android:background="@drawable/button_border">
+
+                <Button
+                    android:id="@+id/imageButtonMinus"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_weight=".30"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    android:text="-"
+                    android:background="#FFF"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="3dp"/>
+
+                <TextView
+                    android:id="@+id/totalItem"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/imageButtonPlus"
+                    app:layout_constraintStart_toEndOf="@+id/imageButtonMinus"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/add_button"/>
+
+                <Button
+                    android:id="@+id/imageButtonPlus"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".30"
+                    android:src="@android:color/transparent"
+                    android:visibility="invisible"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="+"
+                    android:background="#FFF"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="3dp"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>

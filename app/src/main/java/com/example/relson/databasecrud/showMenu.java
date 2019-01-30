@@ -1,11 +1,20 @@
 package com.example.relson.databasecrud;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.relson.databasecrud.performLogin.ApiInterface;
 import  com.example.relson.databasecrud.performLogin.*;
@@ -18,6 +27,8 @@ import retrofit2.Response;
 
 public class showMenu extends AppCompatActivity {
 
+    private TextView viewcart;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_menu);
@@ -28,7 +39,19 @@ public class showMenu extends AppCompatActivity {
         final ArrayList<String> list = new ArrayList() ;
         final ArrayList<String> price = new ArrayList();
 
-
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        frament_cart fragmentCart = new frament_cart();
+//        fragmentTransaction.add(R.id.fragment, fragmentCart);
+//        fragmentTransaction.commit();
+        viewcart = findViewById(R.id.viewCart);
+        viewcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(showMenu.this, firebase_cart.class);
+                startActivity(intent);
+            }
+        });
 
         Log.d("menu", "onCreate: retrofit");
 
@@ -47,6 +70,7 @@ public class showMenu extends AppCompatActivity {
                 }
                 menu.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                 menu.setAdapter(new ProgrammingAdapter(list, price));
+
 
             }
 

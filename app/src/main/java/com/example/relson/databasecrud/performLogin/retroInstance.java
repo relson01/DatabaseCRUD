@@ -5,16 +5,14 @@ import com.example.relson.databasecrud.BuildConfig;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
-import okio.Timeout;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class retroInstance {
 
-    private static String url = "http://192.168.0.104/";
+    private static String url = "http://192.168.0.105/";
 
     public static Retrofit retrofit = null;
 
